@@ -1,0 +1,14 @@
+{
+    "name": "pari-mutuel-betting",
+    "scripts": {
+        "start": "cd server && node server.js",
+        "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm start\""
+    },
+    "dependencies": {
+        "concurrently": "^7.0.0"
+    },
+    "workspaces": [
+        "client",
+        "server"
+    ]
+}
