@@ -9,10 +9,10 @@ const contract = new ethers.Contract(process.env.CONTRACT_ADDRESS, contractABI, 
 
 // contract event FundsDeposited(address user, uint256 amount);
 contract.on("FundsDeposited", async (user, amount) => { 
-    console.log("FundsDeposited", user, amount);
+    console.log("FundsDeposited", user, ethers.formatEther(amount));
     await DepositModel.updateOne(
         { walletAddress: user }, // Filter by wallet address
-        { $inc: { amount: amount } }, // Increment the amount
+        { $inc: { amount: Number(ethers.formatEther(amount)) } }, // Increment the amount
         { upsert: true } // Create if not exists
     );
 });
