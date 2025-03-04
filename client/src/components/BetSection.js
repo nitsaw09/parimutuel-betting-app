@@ -67,7 +67,13 @@ const BetSection = ({ userAddress }) => {
                   type="text"
                   placeholder="Enter amount"
                   value={betAmount}
-                  onChange={(e) => setBetAmount(e.target.value)}
+                  onChange={(e) => {
+                    if (isNaN(Number(e.target.value))) {
+                      e.target.value = '';
+                      return;
+                    }
+                    setBetAmount(e.target.value)
+                  }}
                 />
               </Form.Group>
               <Form.Check
